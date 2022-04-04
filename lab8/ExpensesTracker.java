@@ -1,6 +1,9 @@
 import java.io.FileWriter;
 import java.io.IOException;  
 import java.util.Scanner;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class ExpensesTracker{
   public static void main(String[] args){
@@ -46,22 +49,38 @@ public class ExpensesTracker{
 		price = scan.nextDouble();
 		scan.nextLine();
 
-		System.out.println("Would you like to log another purchase?: ");
+		System.out.println("Would you like to log another purchase?: (y/n) ");
 		output = scan.nextLine();
 
 		fw.write("<" + name + " > purchased < " + item + " > for < " + price + " > US Dollars.");
-		
-		
 	}
-
-
+		
+		
+		
 		if(output.equals(n)) { 
 
 		System.out.println("Get off of ZoodMall!");
+		System.out.println("Would you like to read a summary of your purchases?");
+		String answer = scan.nextLine();
+	
+			if(answer.equals(y)) {
+			
+			String fileName = "expenses.txt";
+			File text = new File(fileName);
+			FileReader fr = new FileReader(text);
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while((line = br.readLine()) != null){
+       			System.out.println(line);
+		
+			}
+	
+		}
    	}
 		
 		
 fw.close();
+scan.close();
 
 
 
